@@ -1,0 +1,163 @@
+{
+  "info": {
+    "name": "LRCP Act3 - CRUD Materias y Categorias",
+    "_postman_id": "9b1e1ce2-cf06-4a16-bd88-e84c42b799c3",
+    "description": "Coleccion de pruebas: MariaDB + JPA. Cambia baseUrl a http://65.52.8.72:8084 para el VPS. No requiere credenciales en Postman.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080",
+      "type": "string"
+    },
+    {
+      "key": "materiaId",
+      "value": "1",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "0. GET categorias",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/categorias",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "categorias"
+          ]
+        }
+      }
+    },
+    {
+      "name": "1. POST crear materia",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nombre\": \"Bases de datos\",\n  \"categoriaId\": 1,\n  \"semestre\": 7,\n  \"descripcion\": \"Diseno de bases de datos relacionales\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/materias",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "materias"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Created\", () => pm.response.to.have.status(201));",
+              "if (pm.response.code === 201) pm.collectionVariables.set(\"materiaId\", pm.response.json().id);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. GET todas las materias",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/materias",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "materias"
+          ]
+        }
+      }
+    },
+    {
+      "name": "3. GET materia por ID",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/materias/{{materiaId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "materias",
+            "{{materiaId}}"
+          ]
+        }
+      }
+    },
+    {
+      "name": "4. PUT actualizar materia",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nombre\": \"Bases de datos actualizada\",\n  \"categoriaId\": 2,\n  \"semestre\": 8,\n  \"descripcion\": \"Materia editada; ahora pertenece a Gestion\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/materias/{{materiaId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "materias",
+            "{{materiaId}}"
+          ]
+        }
+      }
+    },
+    {
+      "name": "5. DELETE eliminar materia",
+      "request": {
+        "method": "DELETE",
+        "url": {
+          "raw": "{{baseUrl}}/api/materias/{{materiaId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "materias",
+            "{{materiaId}}"
+          ]
+        }
+      }
+    }
+  ]
+}

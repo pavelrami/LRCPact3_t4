@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Materias | LRCP Act3</title><link rel="stylesheet" th:href="@{/css/estilos.css}"></head>
+<body>
+<header class="top"><div class="wrap topinner"><a class="brand" th:href="@{/materias}">LRCP <span class="tag">· Actividad 3</span></a><nav><a th:href="@{/materias}">Materias</a><a th:href="@{/materias/nueva}">Registrar</a></nav></div></header>
+<main class="wrap">
+<section class="hero"><div class="tag">Spring Boot 4 · JPA · MySQL</div><h1>Catálogo de materias</h1><p class="muted">CRUD completo con persistencia real y relación Materia → Categoría.</p><p class="help" th:text="${nombreAplicacion}">LRCPact3_t4</p></section>
+<div class="bar"><h2>Materias registradas</h2><a class="btn" th:href="@{/materias/nueva}">+ Nueva materia</a></div>
+<div class="notice" th:if="${mensaje}" th:text="${mensaje}"></div>
+<section class="card"><form th:action="@{/materias}" method="get" class="filter"><div><label for="categoriaId">Filtrar por categoría</label><select id="categoriaId" name="categoriaId"><option value="">Todas las categorías</option><option th:each="cat : ${categorias}" th:value="${cat.id}" th:text="${cat.nombre}" th:selected="${cat.id == categoriaSeleccionada}"></option></select></div><button class="btn" type="submit">Filtrar</button><a class="btn secondary" th:href="@{/materias}">Limpiar</a></form></section>
+<section class="card tablewrap"><p class="muted" th:text="${#lists.size(materias)} + ' resultado(s)'">3 resultados</p><table><thead><tr><th>ID</th><th>Materia</th><th>Categoría relacionada</th><th>Semestre</th><th>Acciones</th></tr></thead><tbody><tr th:each="m : ${materias}"><td th:text="${m.id}">1</td><td><strong th:text="${m.nombre}">Programacion web</strong></td><td><span class="pill" th:text="${m.categoriaNombre}">Programacion</span></td><td th:text="${m.semestre}">7</td><td><div class="actions"><a th:href="@{/materias/{id}(id=${m.id})}">Ver</a><a th:href="@{/materias/{id}/editar(id=${m.id})}">Editar</a><form method="post" class="inline" th:action="@{/materias/{id}/eliminar(id=${m.id})}" onsubmit="return confirm('¿Eliminar esta materia de la base de datos?');"><button class="btn small danger" type="submit">Eliminar</button></form></div></td></tr><tr th:if="${#lists.isEmpty(materias)}"><td colspan="5" class="muted">No hay materias para mostrar.</td></tr></tbody></table></section>
+</main><footer class="foot" th:text="${nombreAplicacion}"></footer>
+</body></html>

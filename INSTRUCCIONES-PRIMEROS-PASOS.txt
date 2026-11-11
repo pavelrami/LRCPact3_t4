@@ -1,0 +1,11 @@
+1. Crea C:\Users\carlo\Desktop\lrcpact3-t4.
+2. Extrae EL CONTENIDO de este ZIP dentro de lrcpact3-t4 (pom.xml debe quedar en la raiz).
+3. Copia desde lrcpact2-t4 a lrcpact3-t4: mvnw, mvnw.cmd y la carpeta .mvn.
+4. Instala MySQL Server LOCAL y crea base lrcp_act3 y usuario lrcp_act3; lee README.md.
+5. Abre Git Bash en ~/Desktop/lrcpact3-t4. Carga la clave con read -s y ejecuta ./mvnw.cmd spring-boot:run.
+6. Prueba http://localhost:8080/materias y REST con Postman.
+7. Comprueba la persistencia parando y reiniciando el servidor.
+8. SOLO DESPUES sube a Azure en el puerto 8084, con otra carpeta y otra base de datos.
+9. Crea GitHub LRCPact3_t4, adjunta capturas reales y README antes de entregar.
+
+IMPORTANTE: no hay contrasenas reales en estos archivos. No hay pruebas de compilacion de Maven en este entorno: verifica BUILD SUCCESS en tu laptop.

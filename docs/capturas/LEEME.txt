@@ -1,0 +1,11 @@
+Guarda aqui capturas reales (no son simuladas):
+01-entidades-jpa.png
+02-crear.png
+03-listar-relacion.png
+04-editar.png
+05-eliminar.png
+06-mysql-sql.png
+07-postman.png
+08-vps-puertos.png
+
+Inserta referencias a estos PNG en README.md cuando esten disponibles.
